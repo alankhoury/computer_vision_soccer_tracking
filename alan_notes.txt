@@ -1,0 +1,17 @@
+play with graphcut code to remove the audience (25 mins) ->have demo code working for full scale images
+
+by increasing the smothing factor, bettwe reults are obtained such that the two regions are separated clearly
+
+research methods of player segmentation (25) -> list of methods to experiments with
+colour segmentation using means shift
+kmeans and graph cut
+colour thresholding
+eucliden distnace(tut3)
+
+
+
+
+
+#####TODO#####
+1 for q5.m use change roi to green colour so user interaction is not required... done
+2 apply thresholding and blob detection to detect players... done

@@ -1,3 +1,6 @@
+function imOut = removeAudience(imIn, scale)
+
+
 % KMEANS and GRAPHCUTS_DEMO --- segmentation example
 % 
 % adapted from CMP Vision Algorithms http://visionbook.felk.cvut.cz
@@ -29,9 +32,8 @@
 
 
  
- img = im2double( imresize(imread('fifa-shot-1.png'), 1) );
- 
-figure, imagesc(img) ; axis image ;  axis off ;
+ img = im2double( imresize(imIn, scale) );
+%figure, imagesc(img) ; axis image ;  axis off ;
 
 [ny,nx,nc] = size(img);
 imgc = applycform( img, makecform('srgb2lab') );
@@ -98,19 +100,19 @@ gch=GraphCut( 'open', Dc, Sc ); % ,exp(-5*Vc),exp(-5*Hc));
 [gch gclabels]= GraphCut('expand',gch);
 gch = GraphCut('close', gch);
 
-figure, imagesc(gclabels) ; axis image ; axis off ;  title('2 cluster image of field and not field');
+%figure, imagesc(gclabels) ; axis image ; axis off ;  title('2 cluster image of field and not field');
 
 yoyo = mat2gray(gclabels);
 
 %figure,imshow(yoyo) ; title('yoyo')
 
 % Draw a boundary separating the main class from the rest
-label=gclabels(100,100) ; %look for the label coordinate corresponding to the main class (e.g. the rhino)
-lb=(gclabels==label);
-lb=imdilate(lb,strel('disk',1))-lb ; 
+% label=gclabels(100,100) ; %look for the label coordinate corresponding to the main class (e.g. the rhino)
+% lb=(gclabels==label);
+% lb=imdilate(lb,strel('disk',1))-lb ; 
 
-figure, image(img) ; axis image ; axis off ; hold on ;
-contour(lb,[1 1],'r','LineWidth',2) ; hold off ; %
+%figure, image(img) ; axis image ; axis off ; hold on ;
+%contour(lb,[1 1],'r','LineWidth',2) ; hold off ; %
 
 
 %
@@ -143,8 +145,8 @@ gch = GraphCut( 'close', gch );
 
 %figure, imagesc(gclabels) ; axis image ; axis off
 
-lb=(gclabels==label) ;
-lb=imdilate(lb,strel('disk',1))-lb ; 
+% lb=(gclabels==label) ;
+% lb=imdilate(lb,strel('disk',1))-lb ; 
 
 % figure, image(img) ; axis image ; axis off ; hold on ;
 % contour(lb,[1 1],'r','LineWidth',2) ; hold off ; 
@@ -191,5 +193,8 @@ if (ny == nny && nnx == nx)
     end
 end
 
-figure, imshow(original); title('audience removed');
+imOut = original;
+%imshow(original); title('audience removed');
     
+
+end

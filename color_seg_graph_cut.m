@@ -1,6 +1,6 @@
 %%% this function inputs an image and a cluster number and outputs an image
 %%% with players extracted from the grass
-function [segmented_im] = color_seg_graph_cut(image_a, k)
+function color_seg_graph_cut(image_a)
 
 img = im2double(image_a);
 %figure, imagesc(img) ; axis image ;  axis off ; title('original frame');
@@ -15,7 +15,7 @@ imgd = reshape( imgc(:,:,2:3), ny*nx, 2 );
 
 % We ask the k-means algorithm for k clusters
 % to capture the variability of the background. 
-
+k=2;
 [cluster_idx,cluster_center] = kmeans(imgd,k);
 
 kmlabels = reshape( cluster_idx, ny, nx );
@@ -74,14 +74,11 @@ gch = GraphCut('close', gch);
 %figure, imagesc(gclabels) ; axis image ; axis off ;  title('2 cluster image of field and not field');
 %figure, imshow(gclabels) ; title('gclabels')
 
-yoyo = mat2bw(gclabels);
-
-%figure,imshow(yoyo) ; title('yoyo')
 
 % Draw a boundary separating the main class from the rest
 label=gclabels(200,100) ; %look for the label coordinate corresponding to the main class (e.g. the rhino)
 lb=(gclabels==label);
-lb=imdilate(lb,strel('disk',1))-lb ; 
+% lb=imdilate(lb,strel('disk',1))-lb ; 
 
 %figure, image(img) ; axis image ; axis off ; hold on ;
 %contour(lb,[1 1],'r','LineWidth',2) ; hold off ; %

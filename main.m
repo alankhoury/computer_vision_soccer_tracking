@@ -7,12 +7,16 @@ close all
 clear
 clc
 debugFlag = 1;
+
 % File definitions for video source
-vidDir = 'C:\Users\Mike\Documents\Uni Stuff\4th Year\Semester 2\AMME4710\Major Project\';
-vidFilename = 'GermanyBrazil.divx';
+vidDir = 'test_videos\';
+vidFilename = 'goal1.mp4';
 
 % Load in raw video
 rawVidObj = loadVideo([vidDir, vidFilename]);
+
+
+
 
 % Prompt user for target region time stamps in <hh:mm:ss>
 [startFrame, endFrame] = getVidBounds(rawVidObj);
