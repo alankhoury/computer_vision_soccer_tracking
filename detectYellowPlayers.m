@@ -22,7 +22,7 @@ sigma = sqrt(diag(Covariance));
 sd = ceil(sigma(3,1));
 
 
-S = colorseg('euclidean',a,6*sd,mean,m);
+S = colorseg('euclidean',a,7*sd,mean,m);
 S = im2bw(S);
 % imshow(S);
 % title('black and white image of players using color seg')

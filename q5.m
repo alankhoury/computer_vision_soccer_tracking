@@ -1,7 +1,7 @@
 %% AMME4710 Tutorial 2 Q5 - Basic Image Segmentation in RGB Vector Space
 % Coded 18/08/2014
 
-function output = q5(rgbInputImage)
+function output = q5()
     % Clear Workspace
 
     
@@ -10,7 +10,7 @@ function output = q5(rgbInputImage)
     D0 = 0.3;
     
     % Read in image
-%     image1 = imread('justField1.png');
+     rgbInputImage = imread('justField1.png');
     R = rgbInputImage(:,:,1);
     G = rgbInputImage(:,:,2);
     B = rgbInputImage(:,:,3);

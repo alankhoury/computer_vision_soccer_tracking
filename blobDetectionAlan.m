@@ -4,5 +4,5 @@ binaryImage = imfill(binaryImage, 'holes');
 imshow(binaryImage);
 % Label each blob so we can make measurements of it
 labeledImage = bwlabel(binaryImage, 8);    
-
+imshow(labeledImage, []);
 end

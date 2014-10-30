@@ -4,18 +4,15 @@ function AlanSickVision()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Filter Initialisation
 
-updateDT = 1;
+updateDT = 10;
 predictDT = 1;
 scaleF = 0.25;
 X = [0 0 0 0 0 0];
-alpha = 0.4;
-beta = 0.01;
-gamma = 0.00015;
-if (beta > 4 - 2*alpha)
+alpha = 0.3; % 0.4
+beta = (alpha^2)/(2 - alpha); % 0.01
+gamma = 0.000; % 0.00015
+if (beta >= 4 - 2*alpha)
     disp('INVALID RANGE OF BETA');
-end
-if (gamma > 4*alpha*beta/(2-alpha))
-    disp('INVALID RANGE OF GAMMA');
 end
 shapeInserter = vision.ShapeInserter('Shape','Circles','BorderColor','Custom', 'CustomBorderColor', uint8([255 0 0]));
 
