@@ -15,3 +15,47 @@ eucliden distnace(tut3)
 #####TODO#####
 1 for q5.m use change roi to green colour so user interaction is not required... done
 2 apply thresholding and blob detection to detect players... done
+
+#### IMAGE TRANSFORM ####
+image registration
+how do you associate the lines with the real world goal box?
+give that we have the lines get the beginning and end points
+go throught the combination of lines, sum the angles to 360
+or which three lines add to 180
+
+use an assumption that we are ignoring the image classification
+
+you know that the two lines that are parallel run along the length of the field and the third lines is parallel to the width of the field
+
+the geometric centroid of those three lines will be the geometric centroid of the three lines in the real world.
+
+also take one of the points that are the intersection of two of the lines
+
+
+calculate the centroid to make sure that the shape is convex becuase rectangles are convex
+
+
+ok so, use the hough transform code on the binary image that contains the field box.
+be able to identify which lines corrspond to the lines in real life. the point of getting the lines is to be able to extract atleast two points which we know map to two real life points. With this information we will be able to transform the points in pixel space to the field space and thus if we know the pixel coordinates of the players then we can know their real world coordinates! 
+
+
+
+##### Using Kmeans and graph cut to detect players ####
+using 'alan.png'
+
+
+write a blob detection function that extracts the blobs larger than 300px^2 and puts a rectangle around the players with yellow jerseys
+
+last thing i worked on
+each frame function only shows players with yellow jersey
+
+what to do next?
+find the players who dont have yellow jerseys
+all minus yellow?
+
+work out how to do cool tracking 
+work out how to to projective transformations!!!!!!
+write up report on what ive done so far
+
+
+

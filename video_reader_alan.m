@@ -33,17 +33,19 @@ VideoStruct = zeros([(size(I,1)) (size(I,2)) 3 nframes], class(I));
 
 
 for k = 1:3:nframes
-    currentFrame = read(obj, k);
-    imOut = removeAudience(currentFrame,1);
-%     figure, subplot (1,5,k), imshow(imOut);
-    imOut = im2uint8(imOut);
-    bw = bwPlayers(imOut);
-imshow(bw);
-  
-    VideoStruct(:,:,:,k) = imOut;
-    
-    
-    color_seg_graph_cut(imOut);
+     currentFrame = read(obj, k);
+%     imOut = removeAudience(currentFrame,1);
+% %     figure, subplot (1,5,k), imshow(imOut);
+%     imOut = im2uint8(imOut);
+%     bw = bwPlayers(imOut);
+% imshow(bw);
+%   
+%     VideoStruct(:,:,:,k) = imOut;
+%     
+%     
+%     color_seg_graph_cut(imOut);
+
+eachFrame(currentFrame);
     
 end
 

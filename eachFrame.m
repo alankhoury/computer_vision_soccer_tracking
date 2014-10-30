@@ -1,17 +1,3 @@
-function singleFrameDetection()
-clc
-clear all;
-addpath('Alan_Segmentation');
-obj = VideoReader('goal3.mp4');
-
-nframes = get(obj, 'NumberOfFrames');
-I = read(obj, 1);
-VideoStruct = zeros([(size(I,1)) (size(I,2)) 3 nframes], class(I));
-
-I = read(obj,200);
-eachFrame(I);
-end
-
 function eachFrame(I)
 fieldOnly = removeAudience(I,1);
 %  figure, imshow(fieldOnly);

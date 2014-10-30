@@ -1,24 +1,24 @@
-% %------------------------------------------------------------------------------------------------
-% % Demo to illustrate simple blob detection, measurement, and filtering.
-% % Requires the Image Processing Toolbox (IPT) because it demonstates some functions
-% % supplied by that toolbox, plus it uses the "coins" demo image supplied with that toolbox.
-% % If you have the IPT (you can check by typing ver on the command line), you should be able to
-% % run this demo code simply by copying and pasting this code into a new editor window,
-% % and then clicking the green "run" triangle on the toolbar.
-% % Running time = 7.5 seconds the first run and 2.5 seconds on subsequent runs.
-% % A similar Mathworks demo:
-% % http://www.mathworks.com/products/image/demos.html?file=/products/demos/shipping/images/ipexprops.html
-% % Code written and posted by ImageAnalyst, July 2009.
-% %------------------------------------------------------------------------------------------------
-% % function BlobsDemo()
-% % echo on;
-% % Startup code.
-% tic; % Start timer.
-% clc; % Clear command window.
-% clear all; % Get rid of variables from prior run of this m-file.
-% disp('Running BlobsDemo.m...'); % Message sent to command window.
-% workspace; % Show panel with all the variables.
-% 
+%------------------------------------------------------------------------------------------------
+% Demo to illustrate simple blob detection, measurement, and filtering.
+% Requires the Image Processing Toolbox (IPT) because it demonstates some functions
+% supplied by that toolbox, plus it uses the "coins" demo image supplied with that toolbox.
+% If you have the IPT (you can check by typing ver on the command line), you should be able to
+% run this demo code simply by copying and pasting this code into a new editor window,
+% and then clicking the green "run" triangle on the toolbar.
+% Running time = 7.5 seconds the first run and 2.5 seconds on subsequent runs.
+% A similar Mathworks demo:
+% http://www.mathworks.com/products/image/demos.html?file=/products/demos/shipping/images/ipexprops.html
+% Code written and posted by ImageAnalyst, July 2009.
+%------------------------------------------------------------------------------------------------
+% function BlobsDemo()
+% echo on;
+% Startup code.
+tic; % Start timer.
+clc; % Clear command window.
+clear all; % Get rid of variables from prior run of this m-file.
+disp('Running BlobsDemo.m...'); % Message sent to command window.
+workspace; % Show panel with all the variables.
+
 % % Change the current folder to the folder of this m-file.
 % % (The line of code below is from Brett Shoelson of The Mathworks.)
 % if(~isdeployed)
@@ -26,7 +26,9 @@
 % end
 % 
 % % Read in standard MATLAB demo image
- binaryImage = imread('bwPlayers1.png'); 
+% originalImage = imread('coins.png'); 
+% % originalImage = rgb2gray(originalImage);
+% % originalImage = 255*((originalImage(:,:) +100)./355);
 % subplot(3, 3, 1);
 % imshow(originalImage);
 % % Maximize the figure window.
@@ -49,13 +51,14 @@
 % %   thresholdValue = normalizedThresholdValue * max(max(originalImage)); % Gray Levels.
 % %   binaryImage = im2bw(originalImage, normalizedThresholdValue);       % One way to threshold to binary
 % % Method #2: using a logical operation.
-%   thresholdValue = 108;
-%   binaryImage = originalImage < thresholdValue; % Bright objects will be the chosen if you use >.
+%   thresholdValue = 100;
+%   binaryImage = originalImage > thresholdValue; % Bright objects will be the chosen if you use >.
 % %   binaryImage = originalImage < thresholdValue; % Dark objects will be the chosen if you use <.
 % 
 % % Do a "hole fill" to get rid of any background pixels inside the blobs.
 % binaryImage = imfill(binaryImage, 'holes');
-% 
+originalImage = mat2gray(imread('yoyoyo.png'));
+binaryImage = im2bw(imread('yoyoyo.png'));
 % % Show the threshold as a vertical red bar on the histogram.
 % hold on;
 % maxYValue = ylim;
@@ -139,8 +142,8 @@ end
 allBlobIntensities = [blobMeasurements.MeanIntensity];
 allBlobAreas = [blobMeasurements.Area];
 % Get a list of the blobs that meet our criteria and we need to keep. 
-allowableIntensityIndexes = (allBlobIntensities > 150) & (allBlobIntensities < 220);
-allowableAreaIndexes = allBlobAreas < 2000; % Take the small objects.
+allowableIntensityIndexes = (allBlobIntensities > 300) & (allBlobIntensities < 220);
+allowableAreaIndexes = allBlobAreas > 200; % Take the small objects.
 keeperIndexes = find(allowableIntensityIndexes & allowableAreaIndexes); 
 % Extract only those blobs that meet our criteria, and 
 % eliminate those blobs that don't meet our criteria. 
